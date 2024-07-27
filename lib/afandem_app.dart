@@ -1,9 +1,13 @@
-import 'package:afandem_app/features/splash/splash_screen.dart';
+import 'package:afandem_app/core/routing/app_router.dart';
+import 'package:afandem_app/core/routing/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+// ignore: must_be_immutable
 class AfandemApp extends StatelessWidget {
-  const AfandemApp({super.key});
+  AfandemApp({super.key, required this.appRouter});
+
+  final AppRouter appRouter;
 
   @override
   Widget build(BuildContext context) {
@@ -12,14 +16,12 @@ class AfandemApp extends StatelessWidget {
       minTextAdapt: true,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        initialRoute: Routes.splashScreen,
+        onGenerateRoute: appRouter.generateRoute,
         title: 'Afandem App',
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.deepPurple,
-          ),
           useMaterial3: true,
         ),
-        home: const SplashScreen(),
       ),
     );
   }
